@@ -1,0 +1,4 @@
+name: PlayerBuff
+version: '${project.version}'
+main: azuazu3939.playerbuff.PlayerBuff
+api-version: 1.15
