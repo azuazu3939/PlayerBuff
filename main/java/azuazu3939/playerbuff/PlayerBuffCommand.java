@@ -8,19 +8,24 @@ import org.jetbrains.annotations.NotNull;
 
 public class PlayerBuffCommand implements CommandExecutor {
 
-    private final PlayerBuff plugin;
+    static PlayerBuff playerBuff;
 
-    public PlayerBuffCommand(PlayerBuff plugin) {
-        this.plugin = plugin;
+    public PlayerBuffCommand(PlayerBuff playerBuff) {
+
+        PlayerBuffCommand.playerBuff = playerBuff;
     }
 
+    public static PlayerBuff getInstance() {
+        return playerBuff;
+    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
         Player player = (Player) sender;
         if (!(player.hasPermission("playerbuff.command.reload"))) return false;
-        plugin.reload();
+        PlayerBuff.getInstance().reload();
+        sender.sendMessage("コンフィグをリロードしました。");
         return true;
     }
 }

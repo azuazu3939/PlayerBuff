@@ -6,14 +6,8 @@ import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.LivingEntity;
 
 public class PlayerBuffSetHealth {
-    private final PlayerBuff plugin;
 
-    public PlayerBuffSetHealth(PlayerBuff plugin) {
-        this.plugin = plugin;
-    }
-
-
-    public boolean hasBuffHealth(LivingEntity entity) {
+    public static boolean hasBuffHealth(LivingEntity entity) {
 
         AttributeInstance attr = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
 
@@ -38,11 +32,11 @@ public class PlayerBuffSetHealth {
         }
     }
 
-    public void addHealthAttributes(LivingEntity entity, int level) {
+    public static void addHealthAttributes(LivingEntity entity, double level) {
 
         AttributeInstance attr = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
         if (attr == null) return;
 
-        attr.addModifier(new AttributeModifier("PlayerBuff.SetHealth", level * plugin.getConfig().getDouble("Set_health_Amount") , AttributeModifier.Operation.ADD_NUMBER));
+        attr.addModifier(new AttributeModifier("PlayerBuff.SetHealth", level, AttributeModifier.Operation.ADD_NUMBER));
     }
 }

@@ -1,23 +1,28 @@
 package azuazu3939.playerbuff;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
 public final class PlayerBuff extends JavaPlugin {
 
-    PlayerBuffSetHealth pbsh;
-    PlayerBuffDuration pbd;
-    PlayerBuffSetCommand pbsc;
+    private static PlayerBuff instance;
+
+    public PlayerBuff() {
+        instance = this;
+    }
+
+    public static PlayerBuff getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
-        pbd = new PlayerBuffDuration(this);
-        pbsh = new PlayerBuffSetHealth(this);
-        getServer().getPluginManager().registerEvents(new PlayerBuffTest(this), this);
-        Objects.requireNonNull(Bukkit.getPluginCommand("playerbuff")).setExecutor(new PlayerBuffCommand(this));
-        Objects.requireNonNull(Bukkit.getPluginCommand("pbs")).setExecutor(pbsc = new PlayerBuffSetCommand(this));
+
+        Objects.requireNonNull(getServer().getPluginCommand("playerbuff")).setExecutor(new PlayerBuffCommand(PlayerBuffCommand.getInstance()));
+        Objects.requireNonNull(getServer().getPluginCommand("pbs")).setExecutor(new PlayerBuffSetCommand());
+        getServer().getPluginManager().registerEvents(new PlayerBuffTest(), this);
+
         saveDefaultConfig();
         saveConfig();
     }

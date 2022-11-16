@@ -1,6 +1,3 @@
 ##試作
 health_Amount: 40
 worldName: "free_field"
-
-##Buff用
-Set_health_Amount: 4

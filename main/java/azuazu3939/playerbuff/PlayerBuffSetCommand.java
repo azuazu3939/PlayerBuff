@@ -14,17 +14,24 @@ import static org.bukkit.Bukkit.getPlayer;
 
 public class PlayerBuffSetCommand implements CommandExecutor {
 
-    private final PlayerBuff plugin;
+    private static PlayerBuffSetCommand instance;
 
-    public PlayerBuffSetCommand(PlayerBuff plugin) {
-        this.plugin = plugin;
+    public PlayerBuffSetCommand() {
+        PlayerBuffSetCommand.instance = this;
     }
+
+    public static PlayerBuffSetCommand getInstance() {
+        return instance;
+    }
+
     String type;
     int level;
     long duration;
 
     LivingEntity target;
     String string;
+
+
 
     @Override
     public boolean onCommand(CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -40,7 +47,10 @@ public class PlayerBuffSetCommand implements CommandExecutor {
             level = Integer.parseInt(args[2]);
             duration = Long.parseLong(args[3]);
         } catch (Exception e) {
-            sender.sendMessage("Invalid arguments /pbs <PlayerName> <BuffType> <level> <duration>");
+            sender.sendMessage("正しく入力しよう！ /pbs <PlayerName> <BuffType> <level> <duration>");
+            sender.sendMessage("PlayerNameはオンラインプレイヤーのみ。");
+            sender.sendMessage("BuffTypeは(Health, Damage, Armor, Toughness, Speed)の内から。");
+            sender.sendMessage("durationは秒数。ログアウトすると効果がはがれるよ。");
             return true;
         }
 
@@ -56,24 +66,28 @@ public class PlayerBuffSetCommand implements CommandExecutor {
         }
 
         if (Objects.equals(type, "Health") || Objects.equals(type, "health") || Objects.equals(type, "HEALTH")) {
-            plugin.pbd.PlayerBuffSetDurationStartHealth(target);
-            plugin.pbd.PlayerBuffSetDuration(duration);
+            PlayerBuffDuration.PlayerBuffSetDurationStartHealth(target);
+            PlayerBuffDuration.PlayerBuffSetDurationHealth(duration);
             return true;
         }
         if (Objects.equals(type, "Damage") || Objects.equals(type, "damage") || Objects.equals(type, "DAMAGE")) {
-            sender.sendMessage("未実装");
+            PlayerBuffDuration.PlayerBuffSetDurationStartDamage(target);
+            PlayerBuffDuration.PlayerBuffSetDurationDamage(duration);
             return true;
         }
         if (Objects.equals(type, "Armor") || Objects.equals(type, "armor") || Objects.equals(type, "ARMOR")) {
-            sender.sendMessage("未実装");
+            PlayerBuffDuration.PlayerBuffSetDurationStartArmor(target);
+            PlayerBuffDuration.PlayerBuffSetDurationArmor(duration);
             return true;
         }
         if (Objects.equals(type, "Toughness") || Objects.equals(type, "toughness") || Objects.equals(type, "TOUGHNESS")) {
-            sender.sendMessage("未実装");
+            PlayerBuffDuration.PlayerBuffSetDurationStartArmorToughness(target);
+            PlayerBuffDuration.PlayerBuffSetDurationToughness(duration);
             return true;
         }
         if (Objects.equals(type, "Speed") || Objects.equals(type, "speed") || Objects.equals(type, "SPEED")) {
-            sender.sendMessage("未実装");
+            PlayerBuffDuration.PlayerBuffSetDurationStartSpeed(target);
+            PlayerBuffDuration.PlayerBuffSetDurationSpeed(duration);
             return true;
         }
         return true;

@@ -17,13 +17,6 @@ import java.util.Objects;
 
 public class PlayerBuffTest implements Listener {
 
-    // このクラスは今回の問題には関係ない。
-    private final PlayerBuff playerBuff;
-
-    public PlayerBuffTest(PlayerBuff playerBuff) {
-        this.playerBuff = playerBuff;
-    }
-
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
 
@@ -38,7 +31,7 @@ public class PlayerBuffTest implements Listener {
 
         LivingEntity entity = event.getPlayer();
         World world = entity.getWorld();
-        String world1 = playerBuff.getConfig().getString("worldName");
+        String world1 = PlayerBuff.getInstance().getConfig().getString("worldName");
         ItemStack itemStack = Objects.requireNonNull(entity.getEquipment()).getHelmet();
         ItemStack itemStack1 = entity.getEquipment().getChestplate();
         ItemStack itemStack2 = entity.getEquipment().getLeggings();
@@ -62,7 +55,7 @@ public class PlayerBuffTest implements Listener {
 
         LivingEntity entity = event.getPlayer();
         World world = entity.getWorld();
-        String world1 = playerBuff.getConfig().getString("worldName");
+        String world1 = PlayerBuff.getInstance().getConfig().getString("worldName");
 
         if (world.getName().equals(world1)) return;
         if (hasTempHealth(entity)) removeAttributes(entity);
@@ -75,8 +68,7 @@ public class PlayerBuffTest implements Listener {
         if (attr == null) return false;
         for (AttributeModifier modifier : attr.getModifiers()) {
 
-            if (modifier.getName().equals("PlayerBuff.temp_health_boost_number") ||
-                    modifier.getName().equals("PlayerBuff.temp_health_boost_scalar")) {
+            if (modifier.getName().equals("PlayerBuff.temp_health_boost_number")) {
                 return true;
             }
         } return false;
@@ -88,8 +80,7 @@ public class PlayerBuffTest implements Listener {
         if (attr == null) return;
 
         for (AttributeModifier modifier : attr.getModifiers()) {
-            if (modifier.getName().equals("PlayerBuff.temp_health_boost_number") ||
-                    modifier.getName().equals("PlayerBuff.temp_health_boost_scalar")) {
+            if (modifier.getName().equals("PlayerBuff.temp_health_boost_number")) {
                 attr.removeModifier(modifier);
             }
         }
@@ -100,6 +91,6 @@ public class PlayerBuffTest implements Listener {
         AttributeInstance attr = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
         if (attr == null) return;
 
-        attr.addModifier(new AttributeModifier("PlayerBuff.temp_health_boost_number", playerBuff.getConfig().getDouble("health_Amount"), AttributeModifier.Operation.ADD_NUMBER));
+        attr.addModifier(new AttributeModifier("PlayerBuff.temp_health_boost_number", PlayerBuff.getInstance().getConfig().getDouble("health_Amount"), AttributeModifier.Operation.ADD_NUMBER));
     }
 }
