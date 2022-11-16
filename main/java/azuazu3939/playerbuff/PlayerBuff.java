@@ -13,6 +13,8 @@ public final class PlayerBuff extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        pbd = new PlayerBuffDuration(this);
+        pbsh = new PlayerBuffSetHealth(this);
         getServer().getPluginManager().registerEvents(new PlayerBuffTest(this), this);
         Objects.requireNonNull(Bukkit.getPluginCommand("playerbuff")).setExecutor(new PlayerBuffCommand(this));
         Objects.requireNonNull(Bukkit.getPluginCommand("pbs")).setExecutor(new PlayerBuffSetCommand(this));

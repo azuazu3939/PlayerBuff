@@ -6,7 +6,11 @@ import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.LivingEntity;
 
 public class PlayerBuffSetHealth {
-    PlayerBuff plugin;
+    private final PlayerBuff plugin;
+
+    public PlayerBuffSetHealth(PlayerBuff plugin) {
+        this.plugin = plugin;
+    }
 
 
     public boolean hasBuffHealth(LivingEntity entity) {
