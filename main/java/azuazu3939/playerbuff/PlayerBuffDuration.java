@@ -5,7 +5,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.Plugin;
 
 public class PlayerBuffDuration implements Listener {
 
@@ -19,9 +18,11 @@ public class PlayerBuffDuration implements Listener {
 
         long l = duration * 20L;
 
-        Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) this, () -> {
-            if (plugin.pbsh.hasBuffHealth(plugin.pbsc.target)) PlayerBuffSetHealth.removeHealthAttributes(plugin.pbsc.target);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+            if (plugin.pbsh.hasBuffHealth(plugin.pbsc.target))
+                PlayerBuffSetHealth.removeHealthAttributes(plugin.pbsc.target);
         }, l);
+
     }
 
     public void PlayerBuffSetDurationStartHealth(LivingEntity entity) {
