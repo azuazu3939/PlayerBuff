@@ -14,14 +14,17 @@ import static org.bukkit.Bukkit.getPlayer;
 
 public class PlayerBuffSetCommand implements CommandExecutor {
 
+    private final PlayerBuff plugin;
+
+    public PlayerBuffSetCommand(PlayerBuff plugin) {
+        this.plugin = plugin;
+    }
     String type;
     int level;
     long duration;
 
     LivingEntity target;
     String string;
-
-    PlayerBuff plugin;
 
     @Override
     public boolean onCommand(CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {

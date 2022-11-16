@@ -14,6 +14,7 @@ public class PlayerBuffCommand implements CommandExecutor {
         this.plugin = plugin;
     }
 
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 

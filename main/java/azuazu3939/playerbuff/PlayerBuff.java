@@ -15,7 +15,7 @@ public final class PlayerBuff extends JavaPlugin {
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new PlayerBuffTest(this), this);
         Objects.requireNonNull(Bukkit.getPluginCommand("playerbuff")).setExecutor(new PlayerBuffCommand(this));
-        Objects.requireNonNull(Bukkit.getPluginCommand("pbs")).setExecutor(new PlayerBuffSetCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("pbs")).setExecutor(new PlayerBuffSetCommand(this));
         saveDefaultConfig();
         saveConfig();
     }
