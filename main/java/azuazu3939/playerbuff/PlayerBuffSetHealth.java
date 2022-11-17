@@ -32,11 +32,11 @@ public class PlayerBuffSetHealth {
         }
     }
 
-    public static void addHealthAttributes(LivingEntity entity, double level) {
+    public static void addHealthAttributes(LivingEntity entity, double amount) {
 
         AttributeInstance attr = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
         if (attr == null) return;
 
-        attr.addModifier(new AttributeModifier("PlayerBuff.SetHealth", level, AttributeModifier.Operation.ADD_NUMBER));
+        attr.addModifier(new AttributeModifier("PlayerBuff.SetHealth", amount, AttributeModifier.Operation.ADD_NUMBER));
     }
 }

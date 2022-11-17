@@ -25,7 +25,7 @@ public class PlayerBuffSetCommand implements CommandExecutor {
     }
 
     String type;
-    int level;
+    double level;
     long duration;
 
     LivingEntity target;
@@ -44,13 +44,14 @@ public class PlayerBuffSetCommand implements CommandExecutor {
         try {
             string = args[0];
             type = args[1];
-            level = Integer.parseInt(args[2]);
+            level = Double.parseDouble(args[2]);
             duration = Long.parseLong(args[3]);
         } catch (Exception e) {
             sender.sendMessage("正しく入力しよう！ /pbs <PlayerName> <BuffType> <level> <duration>");
             sender.sendMessage("PlayerNameはオンラインプレイヤーのみ。");
             sender.sendMessage("BuffTypeは(Health, Damage, Armor, Toughness, Speed)の内から。");
             sender.sendMessage("durationは秒数。ログアウトすると効果がはがれるよ。");
+            sender.sendMessage("注意、Speedは0.2がAZISAVIOR(100%SpeedUp)と同等。");
             return true;
         }
 
