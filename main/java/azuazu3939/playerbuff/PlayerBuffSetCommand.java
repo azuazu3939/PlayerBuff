@@ -31,8 +31,6 @@ public class PlayerBuffSetCommand implements CommandExecutor {
     LivingEntity target;
     String string;
 
-
-
     @Override
     public boolean onCommand(CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 

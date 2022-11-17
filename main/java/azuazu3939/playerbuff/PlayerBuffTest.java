@@ -36,10 +36,10 @@ public class PlayerBuffTest implements Listener {
         ItemStack itemStack1 = entity.getEquipment().getChestplate();
         ItemStack itemStack2 = entity.getEquipment().getLeggings();
         ItemStack itemStack3 = entity.getEquipment().getBoots();
-        ItemStack mythicItem = MythicMobs.inst().getItemManager().getItemStack("HW2022_FF_Head");
-        ItemStack mythicItem1 = MythicMobs.inst().getItemManager().getItemStack("HW2022_FF_Chest");
-        ItemStack mythicItem2 = MythicMobs.inst().getItemManager().getItemStack("HW2022_FF_Legs");
-        ItemStack mythicItem3 = MythicMobs.inst().getItemManager().getItemStack("HW2022_FF_Boots");
+        ItemStack mythicItem = MythicMobs.inst().getItemManager().getItemStack(PlayerBuff.getInstance().getConfig().getString("Head", "HW2022_FF_Head"));
+        ItemStack mythicItem1 = MythicMobs.inst().getItemManager().getItemStack(PlayerBuff.getInstance().getConfig().getString("Chest", "HW2022_FF_Chest"));
+        ItemStack mythicItem2 = MythicMobs.inst().getItemManager().getItemStack(PlayerBuff.getInstance().getConfig().getString("Legs", "HW2022_FF_Legs"));
+        ItemStack mythicItem3 = MythicMobs.inst().getItemManager().getItemStack(PlayerBuff.getInstance().getConfig().getString("Boots", "HW2022_FF_Boots"));
 
         if (!(world.getName().equals(world1))) return;
         if (entity.getEquipment() == null) removeAttributes(entity);

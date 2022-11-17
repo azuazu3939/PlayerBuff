@@ -1,3 +1,7 @@
 ##試作
 health_Amount: 40
 worldName: "free_field"
+Head: "HW2022_FF_Head"
+Chest: "HW2022_FF_Chest"
+Legs: "HW2022_FF_Legs"
+Boots: "HW2022_FF_Boots"
