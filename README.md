@@ -1,7 +1,7 @@
 # PlayerBuff
 プレイヤーのAttributeを変動させ新しいBuffを作成するPL
 
-/pbs <PlayerName> <BuffType> <level> <duration>
+/pbs PlayerName BuffType level duration
 
 PlayerNameはオンラインプレイヤー
 BuffTypeはHealth、Damage、Armor、Toughness、Speedのいずれか。
